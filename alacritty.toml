@@ -1,0 +1,72 @@
+[colors.bright]
+black = "#5e5c64"
+blue = "#2a7bde"
+cyan = "#33c7de"
+green = "#33d17a"
+magenta = "#c061cb"
+red = "#f66151"
+white = "#ffffff"
+yellow = "#e9ad0c"
+
+[colors.normal]
+black = "#000000"
+blue = "#0000ff"
+cyan = "#00ffff"
+green = "#00ff00"
+magenta = "#ff00ff"
+red = "#ff0000"
+white = "#ffffff"
+yellow = "#ffff00"
+
+[colors.primary]
+background = "#000000"
+bright_foreground = "#ffffff"
+foreground = "#ffffff"
+
+[font.bold]
+family = "monospace"
+style = "Bold"
+
+[font.bold_italic]
+family = "monospace"
+style = "Bold Italic"
+
+[font.italic]
+family = "monospace"
+style = "Italic"
+
+[font.normal]
+family = "monospace"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0016"
+key = "V"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0003"
+key = "C"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Space"
+mode = "~Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key = "Space"
+mode = "Vi|~Search"
+mods = "Control"
