@@ -60,7 +60,7 @@ makeToggleable togSym origKeys conf =
 --------------------------------------------------------------------------------------
 
 main :: IO ()
-main = xmonad 
+main = xmonad
      . ewmh
      =<< statusBar "xmobar" def toggleStrutsKey myConfig
 --     $ myConfig
@@ -69,8 +69,8 @@ main = xmonad
     toggleStrutsKey XConfig{ modMask = m } = (m, xK_w)
 
 myConfig = def
-    { modMask  = mod4Mask  -- Rebind Mod to the Super key
-    , keys = makeToggleable xK_Pause myKeys
+    { modMask  = mod1Mask  -- Rebind Mod to the Super key
+    , keys = makeToggleable xK_Insert myKeys
     , mouseBindings = myMouseBindings
     , terminal = myTerminal
     , logHook = myLogHook
@@ -116,12 +116,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm                 , xK_2  ), spawn "setxkbmap it")
     , ((modm                 , xK_3  ), spawn "setxkbmap ru")
 
-    , ((modm                 , xK_r  ), spawn "sh ~/.welcome.sh")    
+    , ((modm                 , xK_r  ), spawn "sh ~/.welcome.sh")
 
     , ((modm                , xK_o), spawn "pactl set-sink-volume 0 +10%")
     , ((modm                , xK_i), spawn "pactl set-sink-volume 0 -10%")
     , ((modm                , xK_u), spawn "pactl set-sink-mute 0 toggle")
-    , ((modm                , xK_Print), spawn "xfce4-screenshoter --interactive")]
+    , ((modm                , xK_Prior), spawn "sh -c 'xfce4-screenshooter --region --save ~/Immagini/Schermate/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).png'")
+    , ((modm                , xK_End), spawn "sh -c 'xfce4-screenshooter --fullscreen --save ~/Immagini/Schermate/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).png'")]
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
@@ -135,7 +136,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 myLayout = toggleLayouts (noBorders Full) (tiled ||| tabbed shrinkText myTabConfig ||| Mirror tiled) -- ||| combineTwo (TwoPane (3/100) (1/2)) myTabbed tall
   where
-    tall = Tall 1 (3/100) (1/2) 
+    tall = Tall 1 (3/100) (1/2)
     threeCol = ThreeColMid nmaster delta ratio
     tiled    = Tall nmaster delta ratio
     nmaster  = 1      -- Default number of windows in the master pane
@@ -143,7 +144,7 @@ myLayout = toggleLayouts (noBorders Full) (tiled ||| tabbed shrinkText myTabConf
     delta    = 5/100  -- Percent of screen to increment by when resizing panes
 --  myTabbed = tabbed shrinkText myTabConfig
 
-myTabConfig = def { activeBorderColor = "#0000FF" 
+myTabConfig = def { activeBorderColor = "#0000FF"
                   , inactiveBorderColor = "#000000"
                   , activeColor = "#0000FF"
                   , inactiveColor = "#000000"
@@ -164,14 +165,17 @@ myManageHook = composeAll
 myLogHook = return ()
 
 myStartupHook = do
+    spawnOnce "xmodmap -e 'keycode 157 = Prior' &"
+    spawnOnce "xmodmap -e 'keycode 107 = End' &"
     spawnOnce "nitrogen --restore &"
     spawnOnce "/usr/lib/pentablet/PenTablet.sh /mini &"
     spawnOnce "/usr/libexec/polkit-agent-helper-1 &"
     spawnOnce "xhost +si:localuser:$USER &"
+    spawnOnce "xfce4-power-manager &"
 
 --------------------------------------------------------------------------------------
 
-myTerminal = "/usr/bin/alacritty"
+myTerminal = "/usr/local/bin/alacritty"
 myWorkspaces    = ["1","2","3","4","5","6","7","8","9","0"]
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
