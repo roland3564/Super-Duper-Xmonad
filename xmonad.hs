@@ -122,7 +122,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm                , xK_i), spawn "pactl set-sink-volume 0 -10%")
     , ((modm                , xK_u), spawn "pactl set-sink-mute 0 toggle")
     , ((modm                , xK_Prior), spawn "sh -c 'xfce4-screenshooter --region --save ~/Immagini/Schermate/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).png'")
-    , ((modm                , xK_End), spawn "sh -c 'xfce4-screenshooter --fullscreen --save ~/Immagini/Schermate/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).png'")]
+    , ((modm                , xK_Next), spawn "sh -c 'xfce4-screenshooter --fullscreen --save ~/Immagini/Schermate/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).png'")]
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
@@ -166,7 +166,7 @@ myLogHook = return ()
 
 myStartupHook = do
     spawnOnce "xmodmap -e 'keycode 157 = Prior' &"
-    spawnOnce "xmodmap -e 'keycode 107 = End' &"
+    spawnOnce "xmodmap -e 'keycode 107 = Next' &"
     spawnOnce "nitrogen --restore &"
     spawnOnce "/usr/lib/pentablet/PenTablet.sh /mini &"
     spawnOnce "/usr/libexec/polkit-agent-helper-1 &"
