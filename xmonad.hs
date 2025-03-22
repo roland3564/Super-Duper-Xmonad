@@ -112,9 +112,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|.   shiftMask , xK_k  ), windows W.swapUp)
     , ((modm                 , xK_l  ), sendMessage Expand)
     , ((modm .|.   shiftMask , xK_m  ), windows W.swapMaster)
-    , ((modm                 , xK_1  ), spawn "setxkbmap us")
-    , ((modm                 , xK_2  ), spawn "setxkbmap it")
-    , ((modm                 , xK_3  ), spawn "setxkbmap ru")
+    , ((modm                 , xK_1  ), spawn "ibus engine xkb:it::ita")
+    , ((modm                 , xK_2  ), spawn "ibus engine xkb:us::eng")
+    , ((modm                 , xK_3  ), spawn "ibus engine xkb:ru::rus")
+    , ((modm                 , xK_4  ), spawn "ibus engine xkb:jp::jpn")
 
     , ((modm                 , xK_r  ), spawn "sh ~/.welcome.sh")
 
@@ -165,6 +166,7 @@ myManageHook = composeAll
 myLogHook = return ()
 
 myStartupHook = do
+    spawnOnce "xrandr --output HDMI-1-0 --mode 1920x1080 --rate 60 --right-of eDP-1 &"
     spawnOnce "xmodmap -e 'keycode 157 = Prior' &"
     spawnOnce "xmodmap -e 'keycode 107 = Next' &"
     spawnOnce "nitrogen --restore &"
