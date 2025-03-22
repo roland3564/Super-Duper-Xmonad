@@ -112,12 +112,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|.   shiftMask , xK_k  ), windows W.swapUp)
     , ((modm                 , xK_l  ), sendMessage Expand)
     , ((modm .|.   shiftMask , xK_m  ), windows W.swapMaster)
-    , ((modm                 , xK_1  ), spawn "ibus engine xkb:it::ita")
-    , ((modm                 , xK_2  ), spawn "ibus engine xkb:us::eng")
-    , ((modm                 , xK_3  ), spawn "ibus engine xkb:ru::rus")
-    , ((modm                 , xK_4  ), spawn "ibus engine xkb:jp::jpn")
+    , ((modm                 , xK_F1  ), spawn "ibus engine xkb:it::ita")
+    , ((modm                 , xK_F2  ), spawn "ibus engine xkb:us::eng")
+    , ((modm                 , xK_F3  ), spawn "ibus engine xkb:ru::rus")
+    , ((modm                 , xK_F4  ), spawn "ibus engine xkb:jp:kana:jpn")
 
-    , ((modm                 , xK_r  ), spawn "sh ~/.welcome.sh")
+    , ((modm                 , xK_r  ), spawn "sh ~/.welcome.sh")   
 
     , ((modm                , xK_o), spawn "pactl set-sink-volume 0 +10%")
     , ((modm                , xK_i), spawn "pactl set-sink-volume 0 -10%")
