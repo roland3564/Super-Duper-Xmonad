@@ -105,7 +105,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm                 , xK_f  ), sendMessage (Toggle "Full"))
     , ((modm .|.   shiftMask , xK_s  ), shiftToNext)
     , ((modm                 , xK_z  ), sendMessage (IncMasterN 1))
-    , ((modm .|.   shiftMask , xK_q  ), io (exitWith ExitSuccess))
     , ((modm                 , xK_x  ), sendMessage (IncMasterN (-1)))
     , ((modm .|.   shiftMask , xK_r  ), spawn "xmonad --recompile; xmonad --restart")
     , ((modm .|. controlMask , xK_r  ), spawn "xmonad --restart")
